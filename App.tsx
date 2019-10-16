@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const StyledView = styled.View`
   background-color: papayawhip;
@@ -16,6 +17,7 @@ class HomeScreen extends React.Component {
     return (
       <StyledView>
         <StyledText>Open up App.tsx to start working on your app!!</StyledText>
+        <Icon name="rocket" size={30} color="#900" />
       </StyledView>
     );
   }
