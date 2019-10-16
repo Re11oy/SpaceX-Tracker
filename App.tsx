@@ -7,10 +7,6 @@ import ScreenTitle from './src/Common/ScreenTitle';
 import { SafeAreaView } from 'react-native';
 import ScreenBackground from './src/Common/ScreenBackground';
 
-const StyledView = styled.View`
-  background-color: papayawhip;
-`;
-
 const StyledText = styled.Text`
   color: palevioletred;
 `;
