@@ -1,19 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import styled from 'styled-components/native';
+
+const StyledView = styled.View`
+  background-color: papayawhip;
+`;
+
+const StyledText = styled.Text`
+  color: palevioletred;
+`;
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!!</Text>
-    </View>
+    <StyledView>
+      <StyledText>Open up App.tsx to start working on your app!!</StyledText>
+    </StyledView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
