@@ -22,9 +22,16 @@
     "@babel/core": "^7.6.0",
     "@types/react": "^16.8.23",
     "@types/react-native": "^0.57.65",
+    "@typescript-eslint/eslint-plugin": "^2.4.0",
+    "@typescript-eslint/parser": "^2.4.0",
     "babel-preset-expo": "^7.0.0",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
     "jest-expo": "^35.0.0",
     "jetifier": "^1.6.4",
+    "prettier": "^1.18.2",
     "typescript": "^3.4.5"
   },
   "jest": {
