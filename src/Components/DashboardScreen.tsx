@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import styled from 'styled-components/native';
+import React from 'react';
 import { SafeAreaView } from 'react-navigation';
-import { ScrollView, RefreshControl, Animated } from 'react-native';
 import ScreenBackground from '../Common/ScreenBackground';
 import ScreenTitle from '../Common/ScreenTitle';
-// import NextLaunchCard from 'components/NextLaunchCard';
-// import ErrorCard from 'components/ErrorCard';
-// import Loader from 'common/Loader';
-// import CountdownCard from 'components/CountdownCard';
-// import { STATES } from 'src/constants';
+import styled from 'styled-components/native';
+
+const StyledText = styled.Text`
+  color: red;
+  background-color: green;
+  font-size: 30px;
+`;
 
 const Wrapper = styled(ScreenBackground)`
   flex: 1;
@@ -23,53 +23,14 @@ const ContentWrapper = styled(SafeAreaView)`
 export interface Props {}
 export interface State {}
 class DashboardScreen extends React.Component<Props, State> {
-  componentDidMount() {
-    this.loadUpcomingLaunch();
-    // this.props.launches.initApp();
-  }
-
-  loadUpcomingLaunch() {
-    // const { numberOfLaunches, loadNextLaunches } = this.props.launches;
-    // loadNextLaunches(numberOfLaunches > 1 ? 5 : 1);
-  }
-
-  navigateToDetails() {
-    // const data = this.props.launches.upcomingLaunch;
-    // this.props.navigation.navigate('details', { data });
-  }
+  componentDidMount() {}
 
   render() {
-    // const { state } = this.props.launches;
-    // const data = this.props.launches.upcomingLaunch;
     return (
       <Wrapper>
         <ScreenTitle title="Next launch" />
         <ContentWrapper>
-          {/*{state === STATES.LOADING && this.props.launches.numberOfLaunches === 0 ? (*/}
-          {/*  <Loader />*/}
-          {/*) : state === STATES.ERROR ? (*/}
-          {/*  <ErrorCard onPress={() => this.loadUpcomingLaunch()} details="Error while fetching launch data" />*/}
-          {/*) : (*/}
-          {/*  data && (*/}
-          {/*    <ScrollView*/}
-          {/*      contentContainerStyle={{ flex: 1 }}*/}
-          {/*      refreshControl={*/}
-          {/*        <RefreshControl*/}
-          {/*          refreshing={data.state === STATES.LOADING}*/}
-          {/*          onRefresh={() => this.loadUpcomingLaunch()}*/}
-          {/*          tintColor="#fff"*/}
-          {/*        />*/}
-          {/*      }*/}
-          {/*    >*/}
-          {/*      <NextLaunchCard*/}
-          {/*        data={data}*/}
-          {/*        navigateToDetails={() => this.navigateToDetails()}*/}
-          {/*        scheduleNotification={data => this.props.launches.scheduleNotification(data)}*/}
-          {/*      />*/}
-          {/*      <CountdownCard data={data} />*/}
-          {/*    </ScrollView>*/}
-          {/*  )*/}
-          {/*)}*/}
+          <StyledText>Test</StyledText>
         </ContentWrapper>
       </Wrapper>
     );

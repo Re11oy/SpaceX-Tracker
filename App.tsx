@@ -6,7 +6,8 @@ import { StatusBar } from 'react-native';
 import DashboardScreen from './src/Components/DashboardScreen';
 import { TABBAR_ICONS, TABS } from './src/constants';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import theme from './src/theme';
+import { theme } from './src/theme';
+import { ThemeProvider } from 'styled-components/native';
 
 const Dashboard = createStackNavigator({
   dashboard: {
@@ -38,10 +39,10 @@ const Navigation = createBottomTabNavigator(
     }),
     tabBarOptions: {
       activeTintColor: 'white',
-      inactiveTintColor: theme.inactive,
+      inactiveTintColor: theme.colors.inactive,
       showLabel: true,
       style: {
-        backgroundColor: theme.cardBackground
+        backgroundColor: theme.colors.cardBackground
       }
     }
   }
@@ -49,10 +50,12 @@ const Navigation = createBottomTabNavigator(
 
 export const App: React.FC = () => {
   return (
-    <>
-      <StatusBar barStyle="light-content" />
-      <Navigation />
-    </>
+    <ThemeProvider theme={theme}>
+      <>
+        <StatusBar barStyle="light-content" />
+        <Navigation />
+      </>
+    </ThemeProvider>
   );
 };
 
