@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 92391,
-  "expoServerNgrokUrl": "https://ax-ag2.anonymous.spacex.exp.direct",
-  "packagerNgrokUrl": "https://packager.ax-ag2.anonymous.spacex.exp.direct",
-  "ngrokPid": 92403,
+  "packagerPid": 96807,
+  "expoServerNgrokUrl": "https://vs-wcp.anonymous.spacex.exp.direct",
+  "packagerNgrokUrl": "https://packager.vs-wcp.anonymous.spacex.exp.direct",
+  "ngrokPid": 96823,
   "webpackServerPort": 19006
 }
