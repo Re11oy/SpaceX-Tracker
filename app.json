@@ -3,7 +3,7 @@
   "displayName": "r/SpaceX",
   "expo": {
     "name": "SpaceX",
-    "slug": "expo-template-bare",
+    "slug": "spacex-calendar",
     "privacy": "unlisted",
     "sdkVersion": "35.0.0",
     "version": "1.0.0",
@@ -12,6 +12,7 @@
       "ios",
       "android",
       "web"
-    ]
+    ],
+    "description": ""
   }
 }
