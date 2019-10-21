@@ -3,12 +3,10 @@ import { SafeAreaView } from 'react-navigation';
 import ScreenBackground from '../Common/ScreenBackground';
 import ScreenTitle from '../Common/ScreenTitle';
 import styled from 'styled-components/native';
-
-const StyledText = styled.Text`
-  color: red;
-  background-color: green;
-  font-size: 30px;
-`;
+import { RefreshControl, ScrollView } from 'react-native';
+import NextLaunchCard from './NextLaunchCard';
+import CountdownCard from './CountdownCard';
+import { NavigationStackProp } from 'react-navigation-stack';
 
 const Wrapper = styled(ScreenBackground)`
   flex: 1;
@@ -20,17 +18,33 @@ const ContentWrapper = styled(SafeAreaView)`
   justify-content: center;
 `;
 
-export interface Props {}
+export interface Props {
+  navigation: NavigationStackProp;
+}
 export interface State {}
 class DashboardScreen extends React.Component<Props, State> {
   componentDidMount() {}
+
+  navigateToDetails() {
+    // const data = this.props.launches.upcomingLaunch;
+    this.props.navigation.navigate('details', {});
+  }
 
   render() {
     return (
       <Wrapper>
         <ScreenTitle title="Next launch" />
         <ContentWrapper>
-          <StyledText>Test</StyledText>
+          <ScrollView
+            contentContainerStyle={{ flex: 1 }}
+            refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} tintColor="#fff" />}
+          >
+            <NextLaunchCard
+              data={{ name: 'Test name', windowstart: 'windowstart' }}
+              navigateToDetails={() => this.navigateToDetails()}
+            />
+            <CountdownCard data={{ wsstamp: 1000 }} />
+          </ScrollView>
         </ContentWrapper>
       </Wrapper>
     );

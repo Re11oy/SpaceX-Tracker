@@ -8,6 +8,7 @@ import { TABBAR_ICONS, TABS } from './src/constants';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { theme } from './src/theme';
 import { ThemeProvider } from 'styled-components/native';
+import LaunchDetailsScreen from './src/Components/LaunchDetailsScreen';
 
 const Dashboard = createStackNavigator({
   dashboard: {
@@ -17,8 +18,8 @@ const Dashboard = createStackNavigator({
       header: null,
       headerBackTitle: null
     }
-  }
-  // details: { screen: LaunchDetailsScreen }
+  },
+  details: { screen: LaunchDetailsScreen }
 });
 
 const Navigation = createBottomTabNavigator(

@@ -1,6 +1,6 @@
 // TODO THEME NOT WORKING
 const colors = {
-  cardBackground: 'red',
+  cardBackground: '#42446f',
   inactive: '#8183a5'
 };
 
