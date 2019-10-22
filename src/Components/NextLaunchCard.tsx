@@ -11,8 +11,7 @@ const Wrapper = styled(LinearGradient)`
 `;
 
 const Title = styled.Text<{ large?: boolean }>`
-  color: white;
-  font-weight: bold;
+  color: #000;
   font-size: ${({ large }) => (large ? 18 : 14)}px;
   align-self: flex-end;
 `;
@@ -47,8 +46,8 @@ export interface Props {
 const NextLaunchCard: React.FC<Props> = ({ data, navigateToDetails }) => {
   return (
     <PushableWrapper style={{ flex: 1 }} onPress={navigateToDetails}>
-      <Wrapper colors={['#ffb39d', '#ff43bb']} start={{ x: 0.0, y: 0.25 }} end={{ x: 0.5, y: 1.0 }}>
-        <BackgroundImage source={{ uri: 'https://via.placeholder.com/150' }} />
+      <Wrapper colors={['#e2e2e2', '#f0f0f0']} start={{ x: 0.0, y: 0.25 }} end={{ x: 0.5, y: 1.0 }}>
+        <BackgroundImage source={{ uri: 'https://farm5.staticflickr.com/4866/39745612523_14270b4b9d_o.jpg' }} />
         <ContentWrapper>
           <View>
             <CompanyTitle>{data.name}</CompanyTitle>

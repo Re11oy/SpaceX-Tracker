@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { theme } from './src/theme';
 import { ThemeProvider } from 'styled-components/native';
 import LaunchDetailsScreen from './src/Components/LaunchDetailsScreen';
+import LaunchCalendarScreen from './src/Components/LaunchCalendarScreen';
 
 const Dashboard = createStackNavigator({
   dashboard: {
@@ -22,10 +23,22 @@ const Dashboard = createStackNavigator({
   details: { screen: LaunchDetailsScreen }
 });
 
+const LaunchCalendar = createStackNavigator({
+  launchCalendar: {
+    screen: LaunchCalendarScreen,
+    navigationOptions: {
+      title: 'Launch calendar',
+      header: null,
+      headerBackTitle: null
+    }
+  },
+  details: { screen: LaunchDetailsScreen }
+});
+
 const Navigation = createBottomTabNavigator(
   {
     [TABS.Home]: Dashboard,
-    [TABS.Calendar]: Dashboard
+    [TABS.Calendar]: LaunchCalendar
     // [TABS.News]: News,
     // [TABS.Search]: Search,
     // [TABS.Settings]: Settings

@@ -11,7 +11,6 @@ const Wrapper = styled.View`
 const MainText = styled.Text`
   font-size: 30px;
   color: #eee;
-  font-weight: bold;
   margin-top: 15px;
 `;
 
@@ -35,7 +34,7 @@ export interface State {
   AppearAnim: Animated.Value;
 }
 
-class ScreenTitle extends React.Component<Props, State> {
+export default class ScreenTitle extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -75,5 +74,3 @@ class ScreenTitle extends React.Component<Props, State> {
     );
   }
 }
-
-export default ScreenTitle;

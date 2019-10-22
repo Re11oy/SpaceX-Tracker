@@ -40,7 +40,7 @@ class DashboardScreen extends React.Component<Props, State> {
             refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} tintColor="#fff" />}
           >
             <NextLaunchCard
-              data={{ name: 'Test name', windowstart: 'windowstart' }}
+              data={{ name: 'Iridium NEXT Mission 8', windowstart: 'Falcon 9' }}
               navigateToDetails={() => this.navigateToDetails()}
             />
             <CountdownCard data={{ wsstamp: 1000 }} />

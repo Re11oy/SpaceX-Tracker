@@ -9,7 +9,6 @@ import { theme } from '../theme';
 import Button from '../Common/Button';
 import CountdownCard from './CountdownCard';
 import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
-import Label from '../Common/Label';
 
 const Wrapper = styled(ScreenBackground)`
   flex: 1;
@@ -169,11 +168,6 @@ class LaunchDetailsScreen extends React.Component<NavigationStackScreenProps<Par
                 </ButtonWrapper>
               </Row>
             </LinksWrapper>
-
-            <Label text="Hello" />
-            <Label text="Test" />
-            <Button onPress={() => {}} type="secondary" title="Press me" />
-            <Button onPress={() => {}} title="And me" />
           </ScrollView>
         </ContentWrapper>
       </Wrapper>
