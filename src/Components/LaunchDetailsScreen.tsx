@@ -9,6 +9,7 @@ import { theme } from '../theme';
 import Button from '../Common/Button';
 import CountdownCard from './CountdownCard';
 import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
+import Launch from '../Models/Launch';
 
 const Wrapper = styled(ScreenBackground)`
   flex: 1;
@@ -86,7 +87,7 @@ const ButtonWrapper = styled.View`
 `;
 
 type Params = {
-  data: any;
+  data: Launch;
 };
 type Props = {};
 class LaunchDetailsScreen extends React.Component<NavigationStackScreenProps<Params, Props>> {
@@ -99,76 +100,13 @@ class LaunchDetailsScreen extends React.Component<NavigationStackScreenProps<Par
     headerTintColor: '#fff'
   };
 
-  openMap({ longitude, latitude }) {}
-
   render() {
     const { navigation } = this.props;
-    const data = navigation.getParam('data', {});
-
-    data.missions = [];
-    const videoLink = ''; //data.vidURLs.length > 0 && data.vidURLs[0];
-    const location = 'Location'; //data.location.name;
-    const rocket = 'Rocket name'; //data.rocket.name;
-    const pad = null; //data.location.pads[0];
-    const time = null; //data.net;
-    const rocketImg = 'https://via.placeholder.com/150'; //data.rocket.imageURL;
-
+    const data = navigation.getParam('data', new Launch());
     return (
       <Wrapper>
         <ContentWrapper>
           <HeaderBack screenTitle="Launch Details" navigateBack={() => this.props.navigation.goBack()} />
-          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-            <DetailsWrapper>
-              {rocket && (
-                <>
-                  <BackgroundImage source={{ uri: rocketImg }} />
-                  <SectionTitle>Rocket</SectionTitle>
-                  <InfoText>{rocket}</InfoText>
-                </>
-              )}
-              <SectionTitle>
-                Mission
-                {data.missions.length > 1 && 's'}
-              </SectionTitle>
-              {data.missions.map(mission => (
-                <InfoText key={mission.id}>{mission.name}</InfoText>
-              ))}
-              {location && (
-                <>
-                  <SectionTitle>Location</SectionTitle>
-                  <InfoText>{location}</InfoText>
-                </>
-              )}
-              {time && (
-                <>
-                  <SectionTitle>Time</SectionTitle>
-                  <InfoText>{data.net}</InfoText>
-                </>
-              )}
-            </DetailsWrapper>
-            <ShuttleIcon name="space-shuttle" size={28} color="#eee" />
-            {data.missions.map(mission => (
-              <DescText key={mission.id}>{mission.description}</DescText>
-            ))}
-            <CountdownCard data={data} />
-            <LinksWrapper>
-              <Row>
-                <ButtonWrapper>
-                  <LinkButton
-                    icon="video"
-                    type="red"
-                    disabled={!videoLink}
-                    onPress={() => Linking.openURL(videoLink)}
-                  />
-                  <ButtonLabel>Livestream</ButtonLabel>
-                </ButtonWrapper>
-                <ButtonWrapper>
-                  <LinkButton icon="map-marked-alt" type="blue" disabled={!pad} onPress={() => this.openMap(pad)} />
-                  <ButtonLabel>Location</ButtonLabel>
-                </ButtonWrapper>
-              </Row>
-            </LinksWrapper>
-          </ScrollView>
         </ContentWrapper>
       </Wrapper>
     );

@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { View } from 'react-native';
 import PushableWrapper from '../Common/PushableWrapper';
+import Launch from '../Models/Launch';
 
 const Wrapper = styled(LinearGradient)`
   border-radius: 10px;
@@ -37,10 +38,7 @@ const ContentWrapper = styled.View`
 `;
 
 export interface Props {
-  data: {
-    name: string;
-    windowstart: string;
-  };
+  data: Launch;
   navigateToDetails: () => void;
 }
 const NextLaunchCard: React.FC<Props> = ({ data, navigateToDetails }) => {
@@ -50,13 +48,13 @@ const NextLaunchCard: React.FC<Props> = ({ data, navigateToDetails }) => {
         <BackgroundImage source={{ uri: 'https://farm5.staticflickr.com/4866/39745612523_14270b4b9d_o.jpg' }} />
         <ContentWrapper>
           <View>
-            <CompanyTitle>{data.name}</CompanyTitle>
+            <CompanyTitle>{data.mission_name}</CompanyTitle>
           </View>
           <View>
             <Title large adjustsFontSizeToFit numberOfLines={1}>
-              {data.name}
+              {data.mission_name}
             </Title>
-            <Title>{data.windowstart}</Title>
+            <Title>{data.launch_date_unix}</Title>
           </View>
         </ContentWrapper>
       </Wrapper>

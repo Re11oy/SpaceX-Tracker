@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FlatList } from 'react-native';
+import { Animated, FlatList } from 'react-native';
 import ScreenBackground from '../Common/ScreenBackground';
 import ScreenTitle from '../Common/ScreenTitle';
 import PushableWrapper from '../Common/PushableWrapper';
@@ -15,10 +15,16 @@ const Wrapper = styled(ScreenBackground)`
 
 type Params = {};
 type Props = {};
-export default class LaunchCalendarScreen extends React.Component<NavigationStackScreenProps<Params, Props>> {
-  state = {
-    page: 0
-  };
+type State = {
+  page: number;
+};
+export default class LaunchCalendarScreen extends React.Component<NavigationStackScreenProps<Params, Props>, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 0
+    };
+  }
 
   navigateToDetails(data) {
     //this.props.navigation.navigate('details', { data });
@@ -28,7 +34,8 @@ export default class LaunchCalendarScreen extends React.Component<NavigationStac
     const data: Launch[] = [
       {
         id: 'key',
-        name: 'name'
+        details: '',
+        mission_name: 'name'
       }
     ];
 

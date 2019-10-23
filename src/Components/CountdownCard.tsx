@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { theme } from '../theme';
+import Launch from '../Models/Launch';
 
 const Wrapper = styled.View`
   background: ${theme.colors.cardBackground};
@@ -30,22 +31,22 @@ const Unit = styled.Text`
 `;
 
 export interface Props {
-  data: {
-    wsstamp: number;
-  };
+  timestamp: number;
 }
-
-export interface State {}
+export interface State {
+  timeLeft: number;
+}
 class CountdownCard extends React.Component<Props, State> {
   private timer: any;
 
-  state = {
-    timeLeft: 0
-  };
+  constructor(props) {
+    super(props);
+    this.state = { timeLeft: 0 };
+  }
 
   componentDidMount() {
     this.updateTimeLeft();
-    if (this.props.data.wsstamp) {
+    if (this.props.timestamp) {
       this.timer = setInterval(() => {
         this.updateTimeLeft();
       }, 1000);
@@ -60,7 +61,7 @@ class CountdownCard extends React.Component<Props, State> {
 
   updateTimeLeft() {
     const now = new Date();
-    const timeLeft = this.props.data.wsstamp * 1000 - now.getTime();
+    const timeLeft = this.props.timestamp * 1000 - now.getTime();
     this.setState({ timeLeft });
   }
 

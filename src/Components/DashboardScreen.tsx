@@ -7,6 +7,9 @@ import { RefreshControl, ScrollView } from 'react-native';
 import NextLaunchCard from './NextLaunchCard';
 import CountdownCard from './CountdownCard';
 import { NavigationStackProp } from 'react-navigation-stack';
+import { inject, observer } from 'mobx-react';
+import LaunchesStore from '../Models/LaunchesStore';
+import { STATES } from '../constants';
 
 const Wrapper = styled(ScreenBackground)`
   flex: 1;
@@ -20,31 +23,37 @@ const ContentWrapper = styled(SafeAreaView)`
 
 export interface Props {
   navigation: NavigationStackProp;
+  launches: LaunchesStore;
 }
 export interface State {}
+@inject('launches')
+@observer
 class DashboardScreen extends React.Component<Props, State> {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.launches.loadNextLaunches();
+  }
 
   navigateToDetails() {
-    // const data = this.props.launches.upcomingLaunch;
-    this.props.navigation.navigate('details', {});
+    const data = this.props.launches.upcomingLaunch;
+    this.props.navigation.navigate('details', { data });
   }
 
   render() {
+    const { state } = this.props.launches;
+    const data = this.props.launches.upcomingLaunch;
     return (
       <Wrapper>
         <ScreenTitle title="Next launch" />
         <ContentWrapper>
-          <ScrollView
-            contentContainerStyle={{ flex: 1 }}
-            refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} tintColor="#fff" />}
-          >
-            <NextLaunchCard
-              data={{ name: 'Iridium NEXT Mission 8', windowstart: 'Falcon 9' }}
-              navigateToDetails={() => this.navigateToDetails()}
-            />
-            <CountdownCard data={{ wsstamp: 1000 }} />
-          </ScrollView>
+          {state === STATES.SUCCESS && (
+            <ScrollView
+              contentContainerStyle={{ flex: 1 }}
+              refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} tintColor="#fff" />}
+            >
+              <NextLaunchCard data={data} navigateToDetails={() => this.navigateToDetails()} />
+              <CountdownCard timestamp={data.launch_date_unix} />
+            </ScrollView>
+          )}
         </ContentWrapper>
       </Wrapper>
     );

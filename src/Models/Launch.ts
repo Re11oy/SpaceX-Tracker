@@ -1,5 +1,6 @@
 export default class Launch {
   id: string;
-  name: string;
-  netstamp?: number = 100;
+  mission_name: string;
+  details: string;
+  launch_date_unix?: number;
 }

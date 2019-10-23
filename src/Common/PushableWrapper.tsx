@@ -5,12 +5,18 @@ export interface Props {
   style?: any;
   onPress: () => void;
 }
-export interface State {}
+export interface State {
+  pressAnim: Animated.Value;
+  appearAnim: Animated.Value;
+}
 class PushableWrapper extends Component<Props, State> {
-  state = {
-    pressAnim: new Animated.Value(1),
-    appearAnim: new Animated.Value(0)
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      pressAnim: new Animated.Value(1),
+      appearAnim: new Animated.Value(0)
+    };
+  }
 
   componentDidMount() {
     Animated.timing(this.state.appearAnim, {

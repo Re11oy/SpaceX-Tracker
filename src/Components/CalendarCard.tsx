@@ -45,7 +45,7 @@ export interface Props {
   data?: Launch;
 }
 const CalendarCard: React.FC<Props> = ({ data }) => {
-  const launchTime = new Date(data.netstamp * 1000);
+  const launchTime = new Date(data.launch_date_unix * 1000);
   return (
     <Wrapper>
       <Row>
@@ -55,10 +55,10 @@ const CalendarCard: React.FC<Props> = ({ data }) => {
             <Day>{MONTHS[launchTime.getMonth()]}</Day>
           </>
         </DateWrapper>
-        <Label numberOfLines={2} text={data.name} />
+        <Label numberOfLines={2} text={data.mission_name} />
       </Row>
-      <Desc bold>{data.name}</Desc>
-      <Desc numberOfLines={1}>{data.name}</Desc>
+      <Desc bold>{data.mission_name}</Desc>
+      <Desc numberOfLines={1}>{data.mission_name}</Desc>
     </Wrapper>
   );
 };
