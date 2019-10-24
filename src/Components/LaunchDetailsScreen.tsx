@@ -27,11 +27,11 @@ const DetailsWrapper = styled.View`
 
 const BackgroundImage = styled.Image`
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0.3;
+  width: 80%;
+  height: 100%;
+  top: 15px;
+  align-self: center;
+  opacity: 0.2;
 `;
 
 const ContentWrapper = styled(SafeAreaView)`
@@ -41,6 +41,12 @@ const ContentWrapper = styled(SafeAreaView)`
 const SectionTitle = styled.Text`
   color: white;
   font-weight: bold;
+`;
+
+const LaunchStatus = styled.Text<{ status: boolean }>`
+  color: ${({ status }) => (status ? '#408e41' : '#b73131')};
+  font-weight: bold;
+  margin-bottom: 15px;
 `;
 
 const InfoText = styled.Text`
@@ -103,17 +109,46 @@ class LaunchDetailsScreen extends React.Component<NavigationStackScreenProps<Par
   render() {
     const { navigation } = this.props;
     const data = navigation.getParam('data', new Launch());
+    const utcDate = new Date(data.launch_date_utc).toUTCString();
+    const fireTestUTC = new Date(data.static_fire_date_utc).toUTCString();
     return (
       <Wrapper>
         <ContentWrapper>
           <HeaderBack screenTitle={data.mission_name} navigateBack={() => this.props.navigation.goBack()} />
           <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
             <DetailsWrapper>
-              <SectionTitle>Description</SectionTitle>
-              <InfoText>{data.details}</InfoText>
+              <BackgroundImage resizeMode="contain" source={{ uri: data.links.mission_patch_small }} />
+              <LaunchStatus status={data.launch_success}>{data.launch_success ? 'Successful' : 'Failed'}</LaunchStatus>
+              <SectionTitle>Rocket</SectionTitle>
+              <InfoText>{data.rocket.rocket_name}</InfoText>
+              <SectionTitle>Launch site</SectionTitle>
+              <InfoText>{data.launch_site.site_name_long}</InfoText>
+              <SectionTitle>Time</SectionTitle>
+              <InfoText>{utcDate}</InfoText>
+              <SectionTitle>Local launch time</SectionTitle>
+              <InfoText>{data.launch_date_local}</InfoText>
             </DetailsWrapper>
             <ShuttleIcon name="space-shuttle" size={28} color="#eee" />
+            <DescText>{data.details}</DescText>
+            <DescText>Static Fire Test Date: {fireTestUTC}</DescText>
             <CountdownCard timestamp={data.launch_date_unix} />
+            <LinksWrapper>
+              <Row>
+                <ButtonWrapper>
+                  <LinkButton
+                    icon="video"
+                    type="red"
+                    disabled={!data.links.video_link}
+                    onPress={() => Linking.openURL(data.links.video_link)}
+                  />
+                  <ButtonLabel>Livestream</ButtonLabel>
+                </ButtonWrapper>
+                <ButtonWrapper>
+                  <LinkButton icon="newspaper" type="blue" onPress={() => Linking.openURL(data.links.video_link)} />
+                  <ButtonLabel>Links</ButtonLabel>
+                </ButtonWrapper>
+              </Row>
+            </LinksWrapper>
           </ScrollView>
         </ContentWrapper>
       </Wrapper>

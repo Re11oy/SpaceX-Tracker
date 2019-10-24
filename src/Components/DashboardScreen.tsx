@@ -30,6 +30,10 @@ export interface State {}
 class DashboardScreen extends React.Component<Props, State> {
   componentDidMount() {
     this.props.launches.loadNextLaunches();
+
+    setTimeout(() => {
+      this.navigateToDetails();
+    }, 1000);
   }
 
   navigateToDetails() {
