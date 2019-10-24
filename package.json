@@ -1,8 +1,8 @@
 {
   "scripts": {
     "postinstall": "jetify",
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "android": "npx react-native run-android",
+    "ios": "npx react-native run-ios",
     "web": "expo start --web",
     "start": "react-native start",
     "test": "jest",
@@ -30,6 +30,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.6.0",
     "@types/react": "^16.8.23",
     "@types/react-native": "^0.57.65",
     "@typescript-eslint/eslint-plugin": "^2.4.0",

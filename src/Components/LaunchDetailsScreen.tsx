@@ -106,7 +106,15 @@ class LaunchDetailsScreen extends React.Component<NavigationStackScreenProps<Par
     return (
       <Wrapper>
         <ContentWrapper>
-          <HeaderBack screenTitle="Launch Details" navigateBack={() => this.props.navigation.goBack()} />
+          <HeaderBack screenTitle={data.mission_name} navigateBack={() => this.props.navigation.goBack()} />
+          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <DetailsWrapper>
+              <SectionTitle>Description</SectionTitle>
+              <InfoText>{data.details}</InfoText>
+            </DetailsWrapper>
+            <ShuttleIcon name="space-shuttle" size={28} color="#eee" />
+            <CountdownCard timestamp={data.launch_date_unix} />
+          </ScrollView>
         </ContentWrapper>
       </Wrapper>
     );

@@ -1,24 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Animated, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 import ScreenBackground from '../Common/ScreenBackground';
 import ScreenTitle from '../Common/ScreenTitle';
 import PushableWrapper from '../Common/PushableWrapper';
-import { NavigationStackScreenProps } from 'react-navigation-stack';
+import { NavigationStackProp } from 'react-navigation-stack';
 import CalendarCard from './CalendarCard';
-import Launch from '../Models/Launch';
+import { inject, observer } from 'mobx-react';
+import LaunchesStore from '../Models/LaunchesStore';
+import { STATES } from '../constants';
+import ErrorCard from './ErrorCard';
 
 const Wrapper = styled(ScreenBackground)`
   flex: 1;
   padding: 40px 0 0 0;
 `;
 
-type Params = {};
-type Props = {};
+type Props = {
+  navigation: NavigationStackProp;
+  launches: LaunchesStore;
+};
 type State = {
   page: number;
 };
-export default class LaunchCalendarScreen extends React.Component<NavigationStackScreenProps<Params, Props>, State> {
+@inject('launches')
+@observer
+export default class LaunchCalendarScreen extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,31 +33,40 @@ export default class LaunchCalendarScreen extends React.Component<NavigationStac
     };
   }
 
+  componentDidMount() {
+    this.props.launches.loadNextLaunches();
+  }
+
   navigateToDetails(data) {
-    //this.props.navigation.navigate('details', { data });
+    this.props.navigation.navigate('details', { data });
   }
 
   render() {
-    const data: Launch[] = [
-      {
-        id: 'key',
-        details: '',
-        mission_name: 'name'
-      }
-    ];
+    const data = this.props.launches;
+
+    if (data.state === STATES.ERROR) {
+      return (
+        <Wrapper>
+          <ScreenTitle title="Launch Calendar" />
+          <ErrorCard onPress={() => {}} details="Error while fetching upcoming launches" />
+        </Wrapper>
+      );
+    }
 
     return (
       <Wrapper>
         <ScreenTitle title="Launch Calendar" />
-        <FlatList
-          data={data}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => (
-            <PushableWrapper onPress={() => this.navigateToDetails(item)}>
-              <CalendarCard data={item} />
-            </PushableWrapper>
-          )}
-        />
+        {data.state === STATES.SUCCESS && (
+          <FlatList
+            data={data.launches}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => (
+              <PushableWrapper onPress={() => this.navigateToDetails(item)}>
+                <CalendarCard data={item} />
+              </PushableWrapper>
+            )}
+          />
+        )}
       </Wrapper>
     );
   }
