@@ -3,7 +3,7 @@ import Launch from './Launch';
 import { API_URL } from '../../cfg';
 import { STATES } from '../constants';
 
-export default class LaunchesStore {
+export class LaunchesStore {
   @observable
   launches: Launch[] = [];
 
@@ -29,3 +29,5 @@ export default class LaunchesStore {
       });
   };
 }
+
+export default new LaunchesStore();

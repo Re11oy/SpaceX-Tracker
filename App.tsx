@@ -10,7 +10,7 @@ import { theme } from './src/theme';
 import { ThemeProvider } from 'styled-components/native';
 import LaunchDetailsScreen from './src/Components/LaunchDetailsScreen';
 import LaunchCalendarScreen from './src/Components/LaunchCalendarScreen';
-import LaunchesStore from './src/Models/LaunchesStore';
+import launchesStore from './src/Models/LaunchesStore';
 import { Provider } from 'mobx-react';
 
 const Dashboard = createStackNavigator({
@@ -64,13 +64,11 @@ const Navigation = createBottomTabNavigator(
   }
 );
 
-const launches = new LaunchesStore();
-
 const AppContainer = createAppContainer(Navigation);
 
 const App: React.FC = () => {
   return (
-    <Provider launches={launches}>
+    <Provider launches={launchesStore}>
       <ThemeProvider theme={theme}>
         <>
           <StatusBar barStyle="light-content" />

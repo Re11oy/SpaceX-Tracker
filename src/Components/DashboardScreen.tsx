@@ -8,8 +8,8 @@ import NextLaunchCard from './NextLaunchCard';
 import CountdownCard from './CountdownCard';
 import { NavigationStackProp } from 'react-navigation-stack';
 import { inject, observer } from 'mobx-react';
-import LaunchesStore from '../Models/LaunchesStore';
 import { STATES } from '../constants';
+import { IObservableStoreProps } from '../Models/IObservableStoreProps';
 
 const Wrapper = styled(ScreenBackground)`
   flex: 1;
@@ -21,9 +21,8 @@ const ContentWrapper = styled(SafeAreaView)`
   justify-content: center;
 `;
 
-export interface Props {
+export interface Props extends IObservableStoreProps {
   navigation: NavigationStackProp;
-  launches: LaunchesStore;
 }
 export interface State {}
 @inject('launches')

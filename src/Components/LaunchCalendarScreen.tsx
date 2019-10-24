@@ -7,22 +7,21 @@ import PushableWrapper from '../Common/PushableWrapper';
 import { NavigationStackProp } from 'react-navigation-stack';
 import CalendarCard from './CalendarCard';
 import { inject, observer } from 'mobx-react';
-import LaunchesStore from '../Models/LaunchesStore';
 import { STATES } from '../constants';
 import ErrorCard from './ErrorCard';
+import { IObservableStoreProps } from '../Models/IObservableStoreProps';
 
 const Wrapper = styled(ScreenBackground)`
   flex: 1;
   padding: 40px 0 0 0;
 `;
 
-type Props = {
+export interface Props extends IObservableStoreProps {
   navigation: NavigationStackProp;
-  launches: LaunchesStore;
-};
-type State = {
+}
+export interface State {
   page: number;
-};
+}
 @inject('launches')
 @observer
 export default class LaunchCalendarScreen extends React.Component<Props, State> {
@@ -59,7 +58,7 @@ export default class LaunchCalendarScreen extends React.Component<Props, State> 
         {data.state === STATES.SUCCESS && (
           <FlatList
             data={data.launches}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.mission_name}
             renderItem={({ item }) => (
               <PushableWrapper onPress={() => this.navigateToDetails(item)}>
                 <CalendarCard data={item} />

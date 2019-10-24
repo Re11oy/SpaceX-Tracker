@@ -13,7 +13,7 @@
     "expo": "^35.0.0",
     "expo-linear-gradient": "~7.0.0",
     "mobx": "^5.14.2",
-    "mobx-react": "^6.1.4",
+    "mobx-react": "5.4.4",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "0.59.10",
@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-decorators": "^7.6.0",
     "@types/react": "^16.8.23",
     "@types/react-native": "^0.57.65",
@@ -45,6 +44,7 @@
     "jetifier": "^1.6.4",
     "lint-staged": ">=8",
     "prettier": "^1.18.2",
+    "reactotron-react-native": "^4.0.2",
     "typescript": "^3.4.5"
   },
   "jest": {
