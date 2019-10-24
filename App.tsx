@@ -11,7 +11,10 @@ import { ThemeProvider } from 'styled-components/native';
 import LaunchDetailsScreen from './src/Components/LaunchDetailsScreen';
 import LaunchCalendarScreen from './src/Components/LaunchCalendarScreen';
 import launchesStore from './src/Models/LaunchesStore';
+import newsStore from './src/Models/NewsStore';
 import { Provider } from 'mobx-react';
+import SettingsScreen from './src/Components/SettingsScreen';
+import NewsScreen from './src/Components/NewsScreen';
 
 const Dashboard = createStackNavigator({
   dashboard: {
@@ -37,13 +40,36 @@ const LaunchCalendar = createStackNavigator({
   details: { screen: LaunchDetailsScreen }
 });
 
+const News = createStackNavigator({
+  news: {
+    screen: NewsScreen,
+    navigationOptions: {
+      title: 'News',
+      header: null,
+      headerBackTitle: null
+    }
+  }
+});
+
+const Settings = createStackNavigator({
+  search: {
+    screen: SettingsScreen,
+    navigationOptions: {
+      title: 'Settings',
+      header: null,
+      headerBackTitle: null
+    }
+  }
+  //libraries: { screen: LibrariesScreen }
+});
+
 const Navigation = createBottomTabNavigator(
   {
     [TABS.Home]: Dashboard,
-    [TABS.Calendar]: LaunchCalendar
-    // [TABS.News]: News,
+    [TABS.Calendar]: LaunchCalendar,
+    [TABS.News]: News,
     // [TABS.Search]: Search,
-    // [TABS.Settings]: Settings
+    [TABS.Settings]: Settings
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -68,7 +94,7 @@ const AppContainer = createAppContainer(Navigation);
 
 const App: React.FC = () => {
   return (
-    <Provider launches={launchesStore}>
+    <Provider launches={launchesStore} news={newsStore}>
       <ThemeProvider theme={theme}>
         <>
           <StatusBar barStyle="light-content" />

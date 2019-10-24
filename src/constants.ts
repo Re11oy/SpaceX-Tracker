@@ -9,7 +9,7 @@ export const TABS = {
 export const TABBAR_ICONS = {
   [TABS.Home]: 'rocket',
   [TABS.Calendar]: 'calendar',
-  [TABS.News]: 'newspaper',
+  [TABS.News]: 'feed',
   [TABS.Search]: 'search',
   [TABS.Settings]: 'cog'
 };

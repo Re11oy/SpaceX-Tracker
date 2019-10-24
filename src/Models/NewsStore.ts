@@ -1,27 +1,26 @@
 import { observable, computed, action } from 'mobx';
-import Launch from './Launch';
-import { API_URL } from '../../cfg';
+import { NEWS_API_URL } from '../../cfg';
 import { STATES } from '../constants';
 
-export class LaunchesStore {
+export class NewsStore {
   @observable
-  launches: Launch[] = [];
+  articles = [];
 
   @observable
   state = STATES.IDLE;
 
   @computed
-  get upcomingLaunch() {
-    return this.launches.length > 0 && this.launches[0];
+  get numberOfArticles() {
+    return this.articles.length || 0;
   }
 
   @action
-  loadNextLaunches = () => {
+  getNews = (numberOfArticles = 12) => {
     this.state = STATES.LOADING;
-    fetch(`${API_URL}launches/past?limit=10&order=desc`)
+    fetch(`${NEWS_API_URL}/articles?limit=${numberOfArticles}&news_site=spacex`)
       .then(data => data.json())
       .then(data => {
-        this.launches = data;
+        this.articles = data || [];
         this.state = STATES.SUCCESS;
       })
       .catch(err => {
@@ -30,4 +29,4 @@ export class LaunchesStore {
   };
 }
 
-export default new LaunchesStore();
+export default new NewsStore();

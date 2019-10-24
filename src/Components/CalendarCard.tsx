@@ -8,9 +8,9 @@ import Launch from '../Models/Launch';
 
 const Wrapper = styled.View`
   background: ${theme.colors.cardBackground};
-  margin: 20px;
+  margin: 15px;
   border-radius: 15px;
-  padding: 20px 15px 20px 20px;
+  padding: 10px 15px 10px 15px;
 `;
 
 const DateWrapper = styled(LinearGradient)`
@@ -41,6 +41,15 @@ const Desc = styled.Text<{ bold?: boolean }>`
   ${({ bold }) => bold && 'font-weight: bold;'}
 `;
 
+const BackgroundImage = styled.Image`
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 15px;
+  align-self: center;
+  opacity: 0.25;
+`;
+
 export interface Props {
   data?: Launch;
 }
@@ -48,17 +57,18 @@ const CalendarCard: React.FC<Props> = ({ data }) => {
   const launchTime = new Date(data.launch_date_unix * 1000);
   return (
     <Wrapper>
+      <BackgroundImage resizeMode="contain" source={{ uri: data.links.mission_patch_small }} />
       <Row>
         <DateWrapper colors={['#ffb39d', '#ff43bb']} start={{ x: 0.0, y: 0.25 }} end={{ x: 0.5, y: 1.0 }}>
           <>
-            <Day>{launchTime.getDate()}</Day>
             <Day>{MONTHS[launchTime.getMonth()]}</Day>
+            <Day>{launchTime.getFullYear()}</Day>
           </>
         </DateWrapper>
-        <Label numberOfLines={2} text={data.mission_name} />
+        <Label numberOfLines={1} text={data.mission_name} maxWidth={'50%'} />
       </Row>
-      <Desc bold>{data.mission_name}</Desc>
-      <Desc numberOfLines={1}>{data.mission_name}</Desc>
+      <Desc bold>{data.rocket.rocket_name}</Desc>
+      <Desc numberOfLines={1}>Launched from {data.launch_site.site_name}</Desc>
     </Wrapper>
   );
 };
