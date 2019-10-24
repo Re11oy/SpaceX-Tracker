@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { observer, inject } from 'mobx-react';
-import { MONTHS_FULL, STATES } from '../constants';
-import ScreenTitle from '../Common/ScreenTitle';
-import ErrorCard from './ErrorCard';
-import { IObservableStoreProps } from '../Models/IObservableStoreProps';
+import { MONTHS_FULL, STATES } from '../../constants';
+import ScreenTitle from '../../Common/ScreenTitle';
+import ErrorCard from '../ErrorCard';
+import { IObservableStoreProps } from '../../Models/IObservableStoreProps';
 import { NavigationStackProp } from 'react-navigation-stack';
-import ScreenBackground from '../Common/ScreenBackground';
+import ScreenBackground from '../../Common/ScreenBackground';
 import NewsCard from './NewsCard';
 
 const Wrapper = styled(ScreenBackground)`

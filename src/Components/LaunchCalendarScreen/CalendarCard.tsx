@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import Label from '../Common/Label';
-import { theme } from '../theme';
-import { MONTHS } from '../constants';
-import Launch from '../Models/Launch';
+import Label from '../../Common/Label';
+import { theme } from '../../theme';
+import { MONTHS } from '../../constants';
+import Launch from '../../Models/Launch';
 
 const Wrapper = styled.View`
   background: ${theme.colors.cardBackground};

@@ -9,12 +9,12 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { theme } from './src/theme';
 import { ThemeProvider } from 'styled-components/native';
 import LaunchDetailsScreen from './src/Components/LaunchDetailsScreen';
-import LaunchCalendarScreen from './src/Components/LaunchCalendarScreen';
+import LaunchCalendarScreen from './src/Components/LaunchCalendarScreen/LaunchCalendarScreen';
 import launchesStore from './src/Models/LaunchesStore';
 import newsStore from './src/Models/NewsStore';
 import { Provider } from 'mobx-react';
 import SettingsScreen from './src/Components/SettingsScreen';
-import NewsScreen from './src/Components/NewsScreen';
+import NewsScreen from './src/Components/NewsScreen/NewsScreen';
 
 const Dashboard = createStackNavigator({
   dashboard: {
