@@ -9,7 +9,7 @@ import { theme } from '../theme';
 import Button from '../Common/Button';
 import CountdownCard from './CountdownCard';
 import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
-import Launch from '../Models/Launch';
+import Launch, { Links } from '../Models/Launch';
 
 const Wrapper = styled(ScreenBackground)`
   flex: 1;
@@ -98,13 +98,16 @@ type Params = {
 type Props = {};
 class LaunchDetailsScreen extends React.Component<NavigationStackScreenProps<Params, Props>> {
   static navigationOptions: NavigationStackOptions = {
-    title: 'Launch details',
-    headerStyle: {
-      backgroundColor: '#222437'
-    },
-    header: null,
-    headerTintColor: '#fff'
+    header: null
   };
+
+  navigateToLinks(links: Links) {
+    this.props.navigation.navigate('links', { links });
+  }
+
+  navigateToGallery(links: Links) {
+    this.props.navigation.navigate('gallery', { links: links.flickr_images });
+  }
 
   render() {
     const { navigation } = this.props;
@@ -136,7 +139,7 @@ class LaunchDetailsScreen extends React.Component<NavigationStackScreenProps<Par
               <Row>
                 <ButtonWrapper>
                   <LinkButton
-                    icon="video"
+                    icon="youtube"
                     type="red"
                     disabled={!data.links.video_link}
                     onPress={() => Linking.openURL(data.links.video_link)}
@@ -144,9 +147,16 @@ class LaunchDetailsScreen extends React.Component<NavigationStackScreenProps<Par
                   <ButtonLabel>Livestream</ButtonLabel>
                 </ButtonWrapper>
                 <ButtonWrapper>
-                  <LinkButton icon="newspaper" type="blue" onPress={() => Linking.openURL(data.links.video_link)} />
+                  <LinkButton icon="newspaper" type="blue" onPress={() => this.navigateToLinks(data.links)} />
                   <ButtonLabel>Links</ButtonLabel>
                 </ButtonWrapper>
+
+                {data.links.flickr_images && (
+                  <ButtonWrapper>
+                    <LinkButton icon="rocket" type="fire" onPress={() => this.navigateToGallery(data.links)} />
+                    <ButtonLabel>Gallery</ButtonLabel>
+                  </ButtonWrapper>
+                )}
               </Row>
             </LinksWrapper>
           </ScrollView>

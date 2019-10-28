@@ -65,9 +65,9 @@ const CalendarCard: React.FC<Props> = ({ data }) => {
             <Day>{launchTime.getFullYear()}</Day>
           </>
         </DateWrapper>
-        <Label numberOfLines={1} text={data.mission_name} maxWidth={'50%'} />
+        <Label numberOfLines={1} text={data.rocket.rocket_name} maxWidth={'50%'} />
       </Row>
-      <Desc bold>{data.rocket.rocket_name}</Desc>
+      <Desc bold>{data.mission_name}</Desc>
       <Desc numberOfLines={1}>Launched from {data.launch_site.site_name}</Desc>
     </Wrapper>
   );

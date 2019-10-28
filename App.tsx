@@ -15,6 +15,8 @@ import newsStore from './src/Models/NewsStore';
 import { Provider } from 'mobx-react';
 import SettingsScreen from './src/Components/SettingsScreen';
 import NewsScreen from './src/Components/NewsScreen/NewsScreen';
+import LinksScreen from './src/Components/LaunchCalendarScreen/LinksScreen';
+import GalleryScreen from './src/Components/GalleryScreen/GalleryScreen';
 
 const Dashboard = createStackNavigator({
   dashboard: {
@@ -37,7 +39,9 @@ const LaunchCalendar = createStackNavigator({
       headerBackTitle: null
     }
   },
-  details: { screen: LaunchDetailsScreen }
+  details: { screen: LaunchDetailsScreen },
+  links: { screen: LinksScreen },
+  gallery: { screen: GalleryScreen }
 });
 
 const News = createStackNavigator({

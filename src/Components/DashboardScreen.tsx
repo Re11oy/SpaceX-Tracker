@@ -33,7 +33,7 @@ class DashboardScreen extends React.Component<Props, State> {
 
     setTimeout(() => {
       this.navigateToDetails();
-    }, 1000);
+    }, 1500);
   }
 
   navigateToDetails() {

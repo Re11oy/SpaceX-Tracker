@@ -9,12 +9,15 @@ export default class Launch {
     site_name_long: string;
     site_name: string;
   };
-  links: {
-    video_link: string;
-    mission_patch_small: string;
-  };
+  links: Links;
   launch_date_utc: string;
   launch_success: boolean;
   static_fire_date_utc: string;
   launch_date_local: string;
+}
+
+export class Links {
+  video_link: string;
+  mission_patch_small: string;
+  flickr_images: string[];
 }
