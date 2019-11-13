@@ -42,6 +42,10 @@ export interface Props {
   navigateToDetails: () => void;
 }
 const NextLaunchCard: React.FC<Props> = ({ data, navigateToDetails }) => {
+  if (!data) {
+    return <></>;
+  }
+
   const launchDateUTC = new Date(data.launch_date_unix).toUTCString();
 
   return (

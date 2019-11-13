@@ -10,6 +10,7 @@ import { NavigationStackProp } from 'react-navigation-stack';
 import { inject, observer } from 'mobx-react';
 import { STATES } from '../constants';
 import { IObservableStoreProps } from '../Models/IObservableStoreProps';
+import Loader from '../Common/Loader';
 
 const Wrapper = styled(ScreenBackground)`
   flex: 1;
@@ -44,7 +45,9 @@ class DashboardScreen extends React.Component<Props, State> {
       <Wrapper>
         <ScreenTitle title="Next launch" />
         <ContentWrapper>
-          {state === STATES.SUCCESS && (
+          {state === STATES.LOADING && this.props.launches.numberOfUpcomingLaunches === 0 ? (
+            <Loader />
+          ) : (
             <ScrollView
               contentContainerStyle={{ flex: 1 }}
               refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} tintColor="#fff" />}
