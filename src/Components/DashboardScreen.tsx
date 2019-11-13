@@ -29,7 +29,7 @@ export interface State {}
 @observer
 class DashboardScreen extends React.Component<Props, State> {
   componentDidMount() {
-    this.props.launches.loadNextLaunches();
+    this.props.launches.loadLaunches();
   }
 
   navigateToDetails() {

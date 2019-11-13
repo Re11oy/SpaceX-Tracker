@@ -5,28 +5,40 @@ import { STATES } from '../constants';
 
 export class LaunchesStore {
   @observable
-  launches: Launch[] = [];
+  upcomingLaunches: Launch[] = [];
+
+  @observable
+  pastLaunches: Launch[] = [];
 
   @observable
   state = STATES.IDLE;
 
   @computed
   get upcomingLaunch() {
-    return this.launches.length > 0 && this.launches[0];
+    return this.upcomingLaunches.length > 0 && this.upcomingLaunches[0];
   }
 
   @computed
-  get numberOfLaunches() {
-    return this.launches.length || 0;
+  get numberOfUpcomingLaunches() {
+    return this.upcomingLaunches.length || 0;
+  }
+
+  @computed
+  get numberOfPastLaunches() {
+    return this.pastLaunches.length || 0;
   }
 
   @action
-  loadNextLaunches = (numberOfLaunches = 10) => {
+  loadLaunches = (numberOfLaunches = 10, upcoming = true) => {
     this.state = STATES.LOADING;
-    fetch(`${API_URL}launches/upcoming?limit=${numberOfLaunches}`)
+    fetch(`${API_URL}launches/${upcoming ? 'upcoming' : 'past'}?limit=${numberOfLaunches}`)
       .then(data => data.json())
       .then(data => {
-        this.launches = data;
+        if (upcoming) {
+          this.upcomingLaunches = data;
+        } else {
+          this.pastLaunches = data;
+        }
         this.state = STATES.SUCCESS;
       })
       .catch(() => {
@@ -35,15 +47,20 @@ export class LaunchesStore {
   };
 
   @action
-  loadMoreLaunches = (numberOfLaunches = 10) => {
+  loadMoreLaunches = (numberOfLaunches = 10, upcoming = true) => {
     this.state = STATES.LOADING;
-    fetch(`${API_URL}launches/upcoming?limit=${numberOfLaunches}&offset=${this.launches.length}`)
+    const offset = upcoming ? this.upcomingLaunches.length : this.pastLaunches.length;
+    fetch(`${API_URL}launches/${upcoming ? 'upcoming' : 'past'}?limit=${numberOfLaunches}&offset=${offset}`)
       .then(data => data.json())
       .then(data => {
-        this.launches = this.launches.concat(data);
+        if (upcoming) {
+          this.upcomingLaunches = this.upcomingLaunches.concat(data);
+        } else {
+          this.pastLaunches = this.pastLaunches.concat(data);
+        }
         this.state = STATES.SUCCESS;
       })
-      .catch(err => {
+      .catch(() => {
         this.state = STATES.ERROR;
       });
   };
