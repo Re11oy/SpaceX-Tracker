@@ -13,10 +13,11 @@ import LaunchCalendarScreen from './src/Components/LaunchCalendarScreen/LaunchCa
 import launchesStore from './src/Models/LaunchesStore';
 import newsStore from './src/Models/NewsStore';
 import { Provider } from 'mobx-react';
-import SettingsScreen from './src/Components/SettingsScreen';
+import SettingsScreen from './src/Components/SettingsScreen/SettingsScreen';
 import NewsScreen from './src/Components/NewsScreen/NewsScreen';
 import LinksScreen from './src/Components/LaunchCalendarScreen/LinksScreen';
 import GalleryScreen from './src/Components/GalleryScreen/GalleryScreen';
+import LibrariesScreen from './src/Components/SettingsScreen/LibrariesScreen';
 
 const Dashboard = createStackNavigator({
   dashboard: {
@@ -63,8 +64,8 @@ const Settings = createStackNavigator({
       header: null,
       headerBackTitle: null
     }
-  }
-  //libraries: { screen: LibrariesScreen }
+  },
+  libraries: { screen: LibrariesScreen }
 });
 
 const Navigation = createBottomTabNavigator(
@@ -76,6 +77,7 @@ const Navigation = createBottomTabNavigator(
     [TABS.Settings]: Settings
   },
   {
+    initialRouteName: TABS.Settings,
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
