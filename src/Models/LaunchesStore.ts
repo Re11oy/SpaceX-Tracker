@@ -15,16 +15,35 @@ export class LaunchesStore {
     return this.launches.length > 0 && this.launches[0];
   }
 
+  @computed
+  get numberOfLaunches() {
+    return this.launches.length || 0;
+  }
+
   @action
-  loadNextLaunches = () => {
+  loadNextLaunches = (numberOfLaunches = 10) => {
     this.state = STATES.LOADING;
-    fetch(`${API_URL}launches/past?limit=10&order=desc`)
+    fetch(`${API_URL}launches/upcoming?limit=${numberOfLaunches}`)
       .then(data => data.json())
       .then(data => {
         this.launches = data;
         this.state = STATES.SUCCESS;
       })
       .catch(() => {
+        this.state = STATES.ERROR;
+      });
+  };
+
+  @action
+  loadMoreLaunches = (numberOfLaunches = 10) => {
+    this.state = STATES.LOADING;
+    fetch(`${API_URL}launches/upcoming?limit=${numberOfLaunches}&offset=${this.launches.length}`)
+      .then(data => data.json())
+      .then(data => {
+        this.launches = this.launches.concat(data);
+        this.state = STATES.SUCCESS;
+      })
+      .catch(err => {
         this.state = STATES.ERROR;
       });
   };
