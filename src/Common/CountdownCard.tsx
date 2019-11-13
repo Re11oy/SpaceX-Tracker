@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { theme } from '../theme';
-import Launch from '../Models/Launch';
 
 const Wrapper = styled.View`
   background: ${theme.colors.cardBackground};

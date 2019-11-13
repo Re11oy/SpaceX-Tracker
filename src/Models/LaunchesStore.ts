@@ -24,7 +24,7 @@ export class LaunchesStore {
         this.launches = data;
         this.state = STATES.SUCCESS;
       })
-      .catch(err => {
+      .catch(() => {
         this.state = STATES.ERROR;
       });
   };

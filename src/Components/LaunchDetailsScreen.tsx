@@ -7,9 +7,11 @@ import HeaderBack from '../Common/HeaderBack';
 import ScreenBackground from '../Common/ScreenBackground';
 import { theme } from '../theme';
 import Button from '../Common/Button';
-import CountdownCard from './CountdownCard';
+import CountdownCard from '../Common/CountdownCard';
 import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
 import Launch, { Links } from '../Models/Launch';
+import RocketDetailsCard from './RocketDetailsCard';
+import PushableWrapper from '../Common/PushableWrapper';
 
 const Wrapper = styled(ScreenBackground)`
   flex: 1;
@@ -63,7 +65,7 @@ const DescText = styled.Text`
 `;
 
 const LinksWrapper = styled.View`
-  margin: 20px;
+  margin: 20px 20px 10px;
 `;
 
 const ShuttleIcon = styled(Icon)`
@@ -96,10 +98,19 @@ type Params = {
   data: Launch;
 };
 type Props = {};
-class LaunchDetailsScreen extends React.Component<NavigationStackScreenProps<Params, Props>> {
+type State = {
+  rocketDetailsExpanded: boolean;
+};
+class LaunchDetailsScreen extends React.Component<NavigationStackScreenProps<Params, Props>, State> {
   static navigationOptions: NavigationStackOptions = {
     header: null
   };
+  private scrollView: ScrollView;
+
+  constructor(props) {
+    super(props);
+    this.state = { rocketDetailsExpanded: false };
+  }
 
   navigateToLinks(links: Links) {
     this.props.navigation.navigate('links', { links });
@@ -109,16 +120,27 @@ class LaunchDetailsScreen extends React.Component<NavigationStackScreenProps<Par
     this.props.navigation.navigate('gallery', { links: links.flickr_images });
   }
 
+  toggleRocketDetails() {
+    this.setState({ rocketDetailsExpanded: !this.state.rocketDetailsExpanded });
+    setTimeout(() => this.scrollView.scrollToEnd(), 100);
+  }
+
   render() {
     const { navigation } = this.props;
     const data = navigation.getParam('data', new Launch());
     const utcDate = new Date(data.launch_date_utc).toUTCString();
     const fireTestUTC = new Date(data.static_fire_date_utc).toUTCString();
+    const { rocketDetailsExpanded } = this.state;
     return (
       <Wrapper>
         <ContentWrapper>
           <HeaderBack screenTitle={data.mission_name} navigateBack={() => this.props.navigation.goBack()} />
-          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <ScrollView
+            contentContainerStyle={{ flexGrow: 1 }}
+            ref={scrollView => {
+              this.scrollView = scrollView;
+            }}
+          >
             <DetailsWrapper>
               <BackgroundImage resizeMode="contain" source={{ uri: data.links.mission_patch_small }} />
               <LaunchStatus status={data.launch_success}>{data.launch_success ? 'Successful' : 'Failed'}</LaunchStatus>
@@ -159,6 +181,9 @@ class LaunchDetailsScreen extends React.Component<NavigationStackScreenProps<Par
                 )}
               </Row>
             </LinksWrapper>
+            <PushableWrapper style={{ flex: 1 }} onPress={() => this.toggleRocketDetails()}>
+              <RocketDetailsCard data={data.rocket} expanded={rocketDetailsExpanded} />
+            </PushableWrapper>
           </ScrollView>
         </ContentWrapper>
       </Wrapper>

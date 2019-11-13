@@ -2,9 +2,7 @@ export default class Launch {
   mission_name: string;
   details: string;
   launch_date_unix?: number;
-  rocket: {
-    rocket_name: string;
-  };
+  rocket: Rocket;
   launch_site: {
     site_name_long: string;
     site_name: string;
@@ -20,4 +18,9 @@ export class Links {
   video_link: string;
   mission_patch_small: string;
   flickr_images: string[];
+}
+
+export class Rocket {
+  rocket_name: string;
+  first_stage: {};
 }

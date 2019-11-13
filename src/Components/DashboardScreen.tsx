@@ -5,7 +5,7 @@ import ScreenTitle from '../Common/ScreenTitle';
 import styled from 'styled-components/native';
 import { RefreshControl, ScrollView } from 'react-native';
 import NextLaunchCard from './NextLaunchCard';
-import CountdownCard from './CountdownCard';
+import CountdownCard from '../Common/CountdownCard';
 import { NavigationStackProp } from 'react-navigation-stack';
 import { inject, observer } from 'mobx-react';
 import { STATES } from '../constants';
@@ -30,10 +30,6 @@ export interface State {}
 class DashboardScreen extends React.Component<Props, State> {
   componentDidMount() {
     this.props.launches.loadNextLaunches();
-
-    setTimeout(() => {
-      this.navigateToDetails();
-    }, 1500);
   }
 
   navigateToDetails() {
