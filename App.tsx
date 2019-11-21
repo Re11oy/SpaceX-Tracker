@@ -34,8 +34,7 @@ const Dashboard = createStackNavigator({
 const LaunchCalendar = createStackNavigator({
   launchCalendar: {
     screen: LaunchCalendarScreen,
-    navigationOptions:{
-
+    navigationOptions: {
       title: 'Launch calendar',
       header: null,
       headerBackTitle: null
