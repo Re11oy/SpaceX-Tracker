@@ -1,4 +1,4 @@
-# r/SpaceX
+# r/SpaceX [![CircleCI](https://circleci.com/gh/Re11oy/SpaceX-Tracker/tree/master.svg?style=svg)](https://circleci.com/gh/Re11oy/SpaceX-Tracker/tree/master)
 
 A simple way to stay up to date with upcoming SpaceX launches, built with [React-Native](https://github.com/facebook/react-native).
 
