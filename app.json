@@ -1,4 +1,19 @@
 {
-  "name": "moonwalk",
-  "displayName": "Moonwalk"
+  "name": "SpaceX",
+  "displayName": "r/SpaceX",
+  "expo": {
+    "name": "r/SpaceX",
+    "slug": "spacex-tracker",
+    "privacy": "unlisted",
+    "sdkVersion": "35.0.0",
+    "version": "1.0.0",
+    "entryPoint": "node_modules/expo/AppEntry.js",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "description": "SpaceX - Upcoming launches",
+    "githubUrl": "https://github.com/Re11oy/SpaceX-Tracker"
+  }
 }

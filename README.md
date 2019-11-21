@@ -1,8 +1,10 @@
-# [Moonwalk](https://itunes.apple.com/us/app/moonwalk-rocket-launches/id1439376174)
+# r/SpaceX
 
-[![iTunes App Store](https://img.shields.io/itunes/v/1439376174.svg?style=for-the-badge)](https://itunes.apple.com/us/app/moonwalk-rocket-launches/id1439376174)
+A simple way to stay up to date with upcoming SpaceX launches, built with [React-Native](https://github.com/facebook/react-native).
 
-A simple way to stay up to date with upcoming space launches, built with [React-Native](https://github.com/facebook/react-native), using the [Launch Library API](https://launchlibrary.net/).
+TypeScript version of [Moonwalk](https://github.com/Illu/moonwalk) application using the [SpaceX-API](https://github.com/r-spacex/SpaceX-API). 
+
+[![runs with expo](https://img.shields.io/badge/Runs%20with%20Expo-4630EB.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000)](https://expo.io/@re11oy/spacex-tracker)
 
 ## Preview
 
@@ -15,16 +17,11 @@ A simple way to stay up to date with upcoming space launches, built with [React-
 If you want to test the app on a simulator running locally, there's nothing more simple:
 
 ```bash
-$ cd moonwalk
-
-$ yarn
-
-$ yarn build-ios
-
-$ react-native run-ios
+$ cd SpaceX-Tracker
+$ yarn install
+$ expo start
 ```
 
-Although not deployed on the Google Play Store yet, the app is able to run on Android devices. To run the app, simply use the `react-native run-android` command. (This is an ongoing feature, expect some layout issues).
 
 ## Stack
 
@@ -35,12 +32,6 @@ Although not deployed on the Google Play Store yet, the app is able to run on An
 [MobX](https://mobx.js.org/)
 
 [Styled-Components](https://www.styled-components.com/)
-
-## Contribute
-
-If you find a bug, feel free to open an issue or submit a pull request.
-
-New ideas are always welcome, if you have an idea to change or add a feature, let me know by opening an issue or messaging me on [Twitter](https://twitter.com/MaximeNory).
 
 ## Licence
 
