@@ -77,7 +77,7 @@ const Navigation = createBottomTabNavigator(
     [TABS.Settings]: Settings
   },
   {
-    initialRouteName: TABS.Settings,
+    // initialRouteName: TABS.Settings,
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
